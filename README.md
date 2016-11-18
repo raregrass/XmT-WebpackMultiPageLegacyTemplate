@@ -1,2 +1,1 @@
-# WebpackMultiPageLegacyTemplate
-传统多页面网页开发的webpack项目模板
+# Just for placeholder
