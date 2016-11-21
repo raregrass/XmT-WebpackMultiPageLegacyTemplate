@@ -33,6 +33,10 @@ let result = glob.sync("**/*.html", {
 result.map((p) => {
     let parsed = path.parse(p);
 
+    if (p.slice(0, 3) === "lib") {
+        return;
+    }
+
     let entryKey;
     let entryValue;
     if (parsed.dir === "home") {
@@ -44,11 +48,13 @@ result.map((p) => {
     entryValue = "./" + srcRootPath + "/" + parsed.dir + "/" + parsed.name + ".ts";
     webpackConfig.entry[entryKey] = entryValue;
 
-    webpackConfig.plugins.push(
-        new HtmlWebpackPlugin({
-            filename: entryKey + ".html",
-            template: srcRootPath + "/" + p,
-            chunks: [entryKey]
-        })
-    );
+    console.log(`Key: ${entryKey} and Value: ${entryValue}`);
+
+    /*webpackConfig.plugins.push(
+     new HtmlWebpackPlugin({
+     filename: entryKey + ".html",
+     template: srcRootPath + "/" + p,
+     chunks: [entryKey]
+     })
+     );*/
 });

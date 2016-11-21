@@ -152,6 +152,10 @@ let result = glob.sync("**/*.html", {
 result.map((p) => {
     let parsed = path.parse(p);
 
+    if (p.slice(0, 3) === "lib") {
+        return;
+    }
+
     let entryKey;
     let entryValue;
     if (parsed.dir === "home") {
